@@ -1,0 +1,30 @@
+services:
+  vote:
+    build: ./vote
+    ports:
+      - "80:8080"
+    depends_on:
+      - redis
+
+  worker:
+    build: ./worker
+    depends_on:
+      - redis
+      - postgres
+
+  result:
+    build: ./result
+    ports:
+      - "3000:8888"
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+  redis:
+    image: redis:latest
