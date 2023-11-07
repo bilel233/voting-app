@@ -10,7 +10,7 @@ COPY requirements.txt requirements.txt
 # On execute les dependances python
 RUN pip install -r requirements.txt
 
-
+# Copie du repertoire vote dans le conteneur
 COPY . /vote/
 
 # On execute l'application
